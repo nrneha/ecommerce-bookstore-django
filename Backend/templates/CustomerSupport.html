@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% extends 'index.html'%}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3><u>Customer support</u></h3>
+<div class="row">
+	 <div class="col-12 col-lg-12">
+	   <div class="card">
+	     <div class="card-header">Queries and Complaints : :
+<!--		  <div class="card-action">-->
+<!--             <div class="dropdown">-->
+<!--             <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">-->
+<!--              <i class="icon-options"></i>-->
+<!--             </a>-->
+<!--              <div class="dropdown-menu dropdown-menu-right">-->
+<!--              <a class="dropdown-item" href="javascript:void();">Action</a>-->
+<!--              <a class="dropdown-item" href="javascript:void();">Another action</a>-->
+<!--              <a class="dropdown-item" href="javascript:void();">Something else here</a>-->
+<!--              <div class="dropdown-divider"></div>-->
+<!--              <a class="dropdown-item" href="javascript:void();">Separated link</a>-->
+<!--               </div>-->
+<!--              </div>-->
+<!--             </div>-->
+		 </div>
+	       <div class="table-responsive">
+                 <table class="table align-items-center table-flush table-borderless" border="1px">
+                  <thead>
+                   <tr>
+                     <th>Name</th>
+                     <th>Email ID</th>
+                     <th>Subject</th>
+                     <th>Message</th>
+                   </tr>
+                   </thead>
+                   <tbody>
+                   {% for d in data %}
+                   <tr>
+                    <td>{{d.Name}}</td>
+                    <td>{{d.Email}}</td>
+                    <td>{{d.Subject}}</td>
+                    <td>{{d.Message}}</td>
+                       <td>
+                       <a href="{% url 'CustomerDB_Delete' c_id=d.id %}">
+                           <button type="submit" class="btn btn-primary">Delete</button>
+                       </a>
+                       </td>
+                   </tr>
+                   {% endfor %}
+
+
+
+<!--                 </tbody>-->
+                 </table>
+               </div>
+	   </div>
+	 </div>
+	</div>
+</body>
+</html>
+{% endblock %}

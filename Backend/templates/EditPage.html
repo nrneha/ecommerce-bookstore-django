@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends 'index.html'%}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card">
+           <div class="card-body">
+           <div class="card-title">Add Books :</div>
+           <hr>
+            <form method="post" action="{% url 'Save_updations' b_id=b_data.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-group">
+            <label >Name</label>
+            <input type="text" class="form-control"  placeholder="Book's Name" name="name" value="{{b_data.Name}}">
+           </div>
+                <div class="form-group">
+            <label >Category</label>
+                    <select class="form-control" name="category" >
+                        <option>{{b_data.Category}}</option>
+                        {% for i in c_data %}
+                        <option>{{i.category}}</option>
+                        {% endfor %}
+                    </select>
+
+           </div>
+           <div class="form-group">
+            <label >Description</label>
+               <textarea  rows="10" class="form-control" placeholder="Description" name="description">{{b_data.Description}}</textarea>
+           </div>
+
+          <div class="form-group">
+            <label >Price</label>
+            <input type="text" class="form-control"  placeholder="Book's Price" name="price" value="{{b_data.Price}}">
+           </div>
+           <div class="form-group">
+            <label >Upload Image</label>
+               <img src="{{b_data.Image.url}}" >
+            <input type="file" class="form-control" name="image">
+           </div>
+           <div class="form-group">
+            <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Register</button>
+          </div>
+          </form>
+         </div>
+         </div>
+
+</body>
+</html>
+{% endblock %}
