@@ -229,7 +229,7 @@
       </section>
       <!-- end arrival section -->
       <!-- footer section -->
-      <footer class="footer_section">
+       <footer class="footer_section">
          <div class="container">
             <div class="row">
                <div class="col-md-4 footer-col">
@@ -241,19 +241,19 @@
                         <a href="">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                         <span>
-                        Location
+                        28 White tower, Street Name New York City, USA
                         </span>
                         </a>
                         <a href="">
                         <i class="fa fa-phone" aria-hidden="true"></i>
                         <span>
-                        Call +01 1234567890
+                        Call +1234 5698
                         </span>
                         </a>
                         <a href="">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                         <span>
-                        demo@gmail.com
+                        bookshelf4u@gmail.com
                         </span>
                         </a>
                      </div>
@@ -262,10 +262,10 @@
                <div class="col-md-4 footer-col">
                   <div class="footer_detail">
                      <a href="index.html" class="footer-logo">
-                     Famms
+                     THE BOOKSHELF
                      </a>
                      <p>
-                        Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
+                         The ultimate online destination for book lovers! Whether you're searching for the latest bestsellers, timeless classics, or rare finds, we've got you covered. Our user-friendly platform makes it easy to browse, purchase, and discover your next favorite read. Explore a world of books with just a few clicks!"
                      </p>
                      <div class="footer_social">
                         <a href="">
@@ -297,10 +297,10 @@
             <div class="footer-info">
                <div class="col-lg-7 mx-auto px-0">
                   <p>
-                     &copy; <span id="displayYear"></span> All Rights Reserved By
-                     <a href="https://html.design/">Free Html Templates</a><br>
+                     &copy; <span id="displayYear"></span> All Rights Reserved By The Bookshelf Team
+<!--                     <a href="https://html.design/">Free Html Templates</a><br>-->
 
-                     Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+<!--                     Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>-->
                   </p>
                </div>
             </div>
@@ -327,5 +327,28 @@
       <script src="{% static 'newfolder/js/bootstrap.js' %}"></script>
       <!-- custom js -->
       <script src="{% static 'newfolder/js/custom.js' %}"></script>
+
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}', '', 'warning')
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}', '', 'error')
+            </script>
+        {% elif i.tags == 'info' %}
+            <script>
+                swal('{{i}}', '', 'info')
+            </script>
+        {% else %}
+            <script>
+                swal('{{i}}', '', 'success')
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
    </body>
 </html>

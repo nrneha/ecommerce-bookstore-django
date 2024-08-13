@@ -22,7 +22,7 @@ def Product_page(request):
 
 def Filter_Products(request,categ):
     books = BooksDB.objects.filter(Category=categ)
-    return render(request,"Filtered_Products.html",{'books':books})
+    return render(request,"Filtered_Products.html",{'books':books,'category':categ})
 
 def Save_Customer(request):
     if request.method=="POST":
@@ -51,6 +51,7 @@ def Save_UserAccount(request):
 
         obj = User_Accounts( Name =nm,Email =em,Password =ps)
         obj.save()
+        messages.success(request,"Success! Your account is now active.Please Login.. Happy shopping")
         return redirect(UserAccount_Reg)
 
 def User_Login(request):
@@ -70,7 +71,7 @@ def User_Login(request):
 def User_Logout(request):
     del request.session['Name']
     del request.session['Password']
-    messages.success(request,"Logged out successfully.!")
+    messages.success(request,"You have been signed out. Come back soon!")
     return redirect(Home_page)
 
 
@@ -84,6 +85,7 @@ def save_cart(request):
 
         obj = CartDB(Customer =un,Book =bn,Price =pc, Quantity = qt, Total =tp)
         obj.save()
+        messages.success(request,"Your book has been added to the cart..Great choice!!")
         return redirect(Product_page)
 
 def view_cart(request):
@@ -104,6 +106,7 @@ def view_cart(request):
 def remove_cartitem(request,b_id):
     x = CartDB.objects.get(id=b_id)
     x.delete()
+    messages.success(request,"The book has been removed from your cart")
     return redirect(view_cart)
 def user_login_page(request):
     return render(request,"UserLogin.html")
