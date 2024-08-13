@@ -28,8 +28,8 @@
          <!-- header section strats -->
          <header class="header_section">
             <div class="container">
-                             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                  <a class="navbar-brand" href="{% url 'Home' %}"><img width="100" height="100" src="{% static 'newfolder/images/bookgirl.jpg' %}" alt="#" /></a><p style="font-size:23px"><b><span style="color:#E30B5C">THE BOOKSHELF :</span> AMAZING BOOKS ON YOUR WAY.</b></p>
+               <nav class="navbar navbar-expand-lg custom_nav-container ">
+                  <a class="navbar-brand" href="{% url 'Home' %}"><img width="100" height="100" src="{% static 'newfolder/images/bookgirl.jpg' %}" alt="#" /></a><p style="font-size:20px"><b><span style="color:#E30B5C">THE BOOKSHELF :</span> AMAZING BOOKS ON YOUR WAY.</b></p>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class=""> </span>
                   </button>
@@ -38,18 +38,9 @@
                         <li class="nav-item active">
                            <a class="nav-link" href="{% url 'Home' %}">Home <span class="sr-only">(current)</span></a>
                         </li>
-                       <li class="nav-item dropdown">
-                           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Pages <span class="caret"></span></a>
-                           <ul class="dropdown-menu">
-                              <li><a href="{% url 'About' %}">About</a></li>
-                              <li><a href="testimonial.html">Testimonial</a></li>
-                           </ul>
-                        </li>
+
                         <li class="nav-item">
                            <a class="nav-link" href="{% url 'Products' %}">Products</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="blog_list.html">Blog</a>
                         </li>
                         <li class="nav-item">
                            <a class="nav-link" href="{% url 'Contact' %}">Contact</a>
@@ -57,7 +48,7 @@
 
                         {% if request.session.Name %}
                          <li class="nav-item">
-                           <a class="nav-link" href="{% url 'User_Logout' %}">Welcome, {{request.session.Name}}/Logout</a>
+                           <a class="nav-link" href="{% url 'User_Logout' %}">Welcome, <span style="color:blue;">{{request.session.Name}}</span>/Logout</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
@@ -120,15 +111,15 @@
                               </svg>
                            </a>
                         </li>
-                        <form class="form-inline">
-                           <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                           <i class="fa fa-search" aria-hidden="true"></i>
-                           </button>
-                        </form>
+                         <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">More </span><span class="caret"></span></a>
+                           <ul class="dropdown-menu">
+                              <li><a href="{% url 'About' %}">About</a></li>
+                           </ul>
+                        </li>
                      </ul>
                   </div>
                </nav>
-
             </div>
          </header>
          <!-- end header section -->
@@ -156,20 +147,20 @@
             </div>
             <div class="row">
                {% for d in books %}
-               <div class="col-sm-6 col-md-4 col-lg-3">
-                  <div class="box" style="height:600px;width:350px">
+               <div class="col-sm-6 col-md-4 col-lg-3 d-flex ">
+                  <div class="box" style="height:400px;width:300px">
                      <div class="option_container">
                         <div class="options">
                            <a href="{% url 'Single_Product' b_id=d.id %}" class="option1">
                           View
                            </a>
                            <a href="" class="option2">
-                           Buy Now
+                           Add to Cart
                            </a>
                         </div>
                      </div>
                      <div >
-                        <img src="{{ d.Image.url }}" height="450px">
+                        <img src="{{ d.Image.url }}" height="250px">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -182,284 +173,9 @@
                   </div>
                </div>
                {% endfor %}
-<!--               <div class="col-sm-6 col-md-4 col-lg-3">-->
-<!--                  <div class="box">-->
-<!--                     <div class="option_container">-->
-<!--                        <div class="options">-->
-<!--                           <a href="" class="option1">-->
-<!--                           Add To Cart-->
-<!--                           </a>-->
-<!--                           <a href="" class="option2">-->
-<!--                           Buy Now-->
-<!--                           </a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                     <div class="img-box">-->
-<!--                        <img src="images/p2.png" alt="">-->
-<!--                     </div>-->
-<!--                     <div class="detail-box">-->
-<!--                        <h5>-->
-<!--                           Men's Shirt-->
-<!--                        </h5>-->
-<!--                        <h6>-->
-<!--                           $80-->
-<!--                        </h6>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--               <div class="col-sm-6 col-md-4 col-lg-3">-->
-<!--                  <div class="box">-->
-<!--                     <div class="option_container">-->
-<!--                        <div class="options">-->
-<!--                           <a href="" class="option1">-->
-<!--                           Add To Cart-->
-<!--                           </a>-->
-<!--                           <a href="" class="option2">-->
-<!--                           Buy Now-->
-<!--                           </a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                     <div class="img-box">-->
-<!--                        <img src="images/p3.png" alt="">-->
-<!--                     </div>-->
-<!--                     <div class="detail-box">-->
-<!--                        <h5>-->
-<!--                           Women's Dress-->
-<!--                        </h5>-->
-<!--                        <h6>-->
-<!--                           $68-->
-<!--                        </h6>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--               <div class="col-sm-6 col-md-4 col-lg-3">-->
-<!--                  <div class="box">-->
-<!--                     <div class="option_container">-->
-<!--                        <div class="options">-->
-<!--                           <a href="" class="option1">-->
-<!--                           Add To Cart-->
-<!--                           </a>-->
-<!--                           <a href="" class="option2">-->
-<!--                           Buy Now-->
-<!--                           </a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                     <div class="img-box">-->
-<!--                        <img src="images/p4.png" alt="">-->
-<!--                     </div>-->
-<!--                     <div class="detail-box">-->
-<!--                        <h5>-->
-<!--                           Women's Dress-->
-<!--                        </h5>-->
-<!--                        <h6>-->
-<!--                           $70-->
-<!--                        </h6>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--               <div class="col-sm-6 col-md-4 col-lg-3">-->
-<!--                  <div class="box">-->
-<!--                     <div class="option_container">-->
-<!--                        <div class="options">-->
-<!--                           <a href="" class="option1">-->
-<!--                           Add To Cart-->
-<!--                           </a>-->
-<!--                           <a href="" class="option2">-->
-<!--                           Buy Now-->
-<!--                           </a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                     <div class="img-box">-->
-<!--                        <img src="images/p5.png" alt="">-->
-<!--                     </div>-->
-<!--                     <div class="detail-box">-->
-<!--                        <h5>-->
-<!--                           Women's Dress-->
-<!--                        </h5>-->
-<!--                        <h6>-->
-<!--                           $75-->
-<!--                        </h6>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--               <div class="col-sm-6 col-md-4 col-lg-3">-->
-<!--                  <div class="box">-->
-<!--                     <div class="option_container">-->
-<!--                        <div class="options">-->
-<!--                           <a href="" class="option1">-->
-<!--                           Add To Cart-->
-<!--                           </a>-->
-<!--                           <a href="" class="option2">-->
-<!--                           Buy Now-->
-<!--                           </a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                     <div class="img-box">-->
-<!--                        <img src="images/p6.png" alt="">-->
-<!--                     </div>-->
-<!--                     <div class="detail-box">-->
-<!--                        <h5>-->
-<!--                           Women's Dress-->
-<!--                        </h5>-->
-<!--                        <h6>-->
-<!--                           $58-->
-<!--                        </h6>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--               <div class="col-sm-6 col-md-4 col-lg-3">-->
-<!--                  <div class="box">-->
-<!--                     <div class="option_container">-->
-<!--                        <div class="options">-->
-<!--                           <a href="" class="option1">-->
-<!--                           Add To Cart-->
-<!--                           </a>-->
-<!--                           <a href="" class="option2">-->
-<!--                           Buy Now-->
-<!--                           </a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                     <div class="img-box">-->
-<!--                        <img src="images/p7.png" alt="">-->
-<!--                     </div>-->
-<!--                     <div class="detail-box">-->
-<!--                        <h5>-->
-<!--                           Women's Dress-->
-<!--                        </h5>-->
-<!--                        <h6>-->
-<!--                           $80-->
-<!--                        </h6>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--               <div class="col-sm-6 col-md-4 col-lg-3">-->
-<!--                  <div class="box">-->
-<!--                     <div class="option_container">-->
-<!--                        <div class="options">-->
-<!--                           <a href="" class="option1">-->
-<!--                           Add To Cart-->
-<!--                           </a>-->
-<!--                           <a href="" class="option2">-->
-<!--                           Buy Now-->
-<!--                           </a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                     <div class="img-box">-->
-<!--                        <img src="images/p8.png" alt="">-->
-<!--                     </div>-->
-<!--                     <div class="detail-box">-->
-<!--                        <h5>-->
-<!--                           Men's Shirt-->
-<!--                        </h5>-->
-<!--                        <h6>-->
-<!--                           $65-->
-<!--                        </h6>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--               <div class="col-sm-6 col-md-4 col-lg-3">-->
-<!--                  <div class="box">-->
-<!--                     <div class="option_container">-->
-<!--                        <div class="options">-->
-<!--                           <a href="" class="option1">-->
-<!--                           Add To Cart-->
-<!--                           </a>-->
-<!--                           <a href="" class="option2">-->
-<!--                           Buy Now-->
-<!--                           </a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                     <div class="img-box">-->
-<!--                        <img src="images/p9.png" alt="">-->
-<!--                     </div>-->
-<!--                     <div class="detail-box">-->
-<!--                        <h5>-->
-<!--                           Men's Shirt-->
-<!--                        </h5>-->
-<!--                        <h6>-->
-<!--                           $65-->
-<!--                        </h6>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--               <div class="col-sm-6 col-md-4 col-lg-3">-->
-<!--                  <div class="box">-->
-<!--                     <div class="option_container">-->
-<!--                        <div class="options">-->
-<!--                           <a href="" class="option1">-->
-<!--                           Add To Cart-->
-<!--                           </a>-->
-<!--                           <a href="" class="option2">-->
-<!--                           Buy Now-->
-<!--                           </a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                     <div class="img-box">-->
-<!--                        <img src="images/p10.png" alt="">-->
-<!--                     </div>-->
-<!--                     <div class="detail-box">-->
-<!--                        <h5>-->
-<!--                           Men's Shirt-->
-<!--                        </h5>-->
-<!--                        <h6>-->
-<!--                           $65-->
-<!--                        </h6>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--               <div class="col-sm-6 col-md-4 col-lg-3">-->
-<!--                  <div class="box">-->
-<!--                     <div class="option_container">-->
-<!--                        <div class="options">-->
-<!--                           <a href="" class="option1">-->
-<!--                           Add To Cart-->
-<!--                           </a>-->
-<!--                           <a href="" class="option2">-->
-<!--                           Buy Now-->
-<!--                           </a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                     <div class="img-box">-->
-<!--                        <img src="images/p11.png" alt="">-->
-<!--                     </div>-->
-<!--                     <div class="detail-box">-->
-<!--                        <h5>-->
-<!--                           Men's Shirt-->
-<!--                        </h5>-->
-<!--                        <h6>-->
-<!--                           $65-->
-<!--                        </h6>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--               <div class="col-sm-6 col-md-4 col-lg-3">-->
-<!--                  <div class="box">-->
-<!--                     <div class="option_container">-->
-<!--                        <div class="options">-->
-<!--                           <a href="" class="option1">-->
-<!--                           Add To Cart-->
-<!--                           </a>-->
-<!--                           <a href="" class="option2">-->
-<!--                           Buy Now-->
-<!--                           </a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                     <div class="img-box">-->
-<!--                        <img src="images/p12.png" alt="">-->
-<!--                     </div>-->
-<!--                     <div class="detail-box">-->
-<!--                        <h5>-->
-<!--                           Women's Dress-->
-<!--                        </h5>-->
-<!--                        <h6>-->
-<!--                           $65-->
-<!--                        </h6>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
             </div>
             <div class="btn-box">
-               <a href="">
+               <a href="{% url 'Products' %}">
                View All products
                </a>
             </div>
