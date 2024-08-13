@@ -64,8 +64,8 @@
                            <a class="nav-link" href="{% url 'User_Login' %}">Register/Login</a>
                         </li>
                         {% endif %}
-                        <li class="nav-item">
-                           <a class="nav-link" href="{% url 'view_cart' %}">
+                        <li class="nav-item active">
+                           <a class="nav-link " href="{% url 'view_cart' %}">
                               <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                  <g>
                                     <g>
@@ -155,11 +155,11 @@
             <div class="row" style="margin-top:50px;">
 
                <div class="col-lg-8 offset-lg-2">
-                  <div class="full" style="margin-top:50px;margin-left:-200px;">
+                  <div class="full" style="margin-top:50px;margin-left:-250px;">
 
-                      <table width="100%" border="2" class="cart">
+                      <table width="100%" border="2" class="cart" style="padding-left:25px;">
                           <thead>
-                          <tr>
+                          <tr style="height:100px;">
                               <th>Product Id</th>
                               <th>Book</th>
                               <th>Price</th>
@@ -171,7 +171,7 @@
                           </thead>
                          <tbody>
                          {% for i in data %}
-                         <tr>
+                         <tr style="height:70px;">
                             <td>{{i.id}}</td>
                             <td>{{i.Book}}</td>
                             <td>{{i.Price}}</td>
@@ -182,16 +182,6 @@
                          {% endfor %}
                          </tbody>
                       </table>
-<!--                     <form method="post" action="{% url 'CustomerSupport' %}">-->
-<!--                        {% csrf_token %}-->
-<!--                        <fieldset>-->
-<!--                           <input type="text" placeholder="Enter your full name" name="name" required />-->
-<!--                           <input type="email" placeholder="Enter your email address" name="email" required />-->
-<!--                           <input type="text" placeholder="Enter subject" name="subject" required />-->
-<!--                           <textarea placeholder="Enter your message" required name="message"></textarea>-->
-<!--                           <input type="submit" value="Submit" />-->
-<!--                        </fieldset>-->
-<!--                     </form>-->
                   </div>
                </div>
             </div>
@@ -199,23 +189,25 @@
       </section>
       <!-- end why section -->
 <!--Cart Total Table-->
-     <div style="background-color:#FFF4F3;width:350px;height:250px;border:1px solid black;margin-left:450px;">
-        <h4 style="color:red;">Cart Total</h4>
-        <p style="margin-top:40px;">
-           <span >Subtotal</span>
-           <span style="margin-left:150px;">{{subtotal}} Rs.</span>
-        </p>
-         <p>
-           <span >Delivery</span>
-           <span style="margin-left:150px;">{{delivery}} Rs</span>
-        </p>
-         <p>
-           <span>Total </span>
-           <span style="margin-left:150px;">{{total}} Rs</span>
-        </p>
-     </div><br>
-      <span style="margin-left:450px"><a href="{% url 'checkout_page' %}"><button class="btn btn-danger">Proceeded to checkout</button></a></span><br><br>
-
+     <div>
+        <div style="margin-left:110px;"><h4 style="color:red;"><b><u>CART TOTAL</u></b></h4></div>
+        <div style="margin-left:110px;">
+           <table width="50%">
+              <tr style="height:50px;background-color:	#AFE1AF;">
+                 <th>Subtotal</th>
+                 <th>Delivery Fee</th>
+                 <th>Total</th>
+              </tr>
+              <tr>
+                 <td>{{subtotal}} Rs</td>
+                 <td>{{delivery}} Rs</td>
+                 <td>{{total}} Rs</td>
+              </tr>
+           </table>
+        </div>
+<div style="margin-left:950px;">
+      <a href="{% url 'checkout_page' %}"><button class="btn btn-danger" style="height:60px;"><b>Proceeded to checkout</b></button></a><br><br>
+</div>
 
 
 <!--    End Cart Total  -->
@@ -333,7 +325,7 @@
          text-align:center;
          }
          .cart th{
-          background-color:#FF3131;
+          background-color:#DE3163;
           }
       </style>
       <!-- jQery -->
