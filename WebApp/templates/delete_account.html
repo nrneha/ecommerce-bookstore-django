@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 {% load static %}
 <html>
@@ -12,7 +11,7 @@
       <meta name="keywords" content="" />
       <meta name="description" content="" />
       <meta name="author" content="" />
-      <link rel="shortcut icon" href="images/favicon.png" type="">
+      <link rel="shortcut icon" href="{% static 'newfolder/images/bicon.png' %}" type="">
       <title>The BOOKSHELF: AMAZING BOOKS ON YOUR WAY</title>
       <!-- bootstrap core css -->
       <link rel="stylesheet" type="text/css" href="{% static 'newfolder/css/bootstrap.css' %}" />
@@ -23,23 +22,27 @@
       <!-- responsive style -->
       <link href="{% static 'newfolder/css/responsive.css' %}" rel="stylesheet" />
    </head>
-   <body class="sub_page">
+   <body>
       <div class="hero_area">
-         <!-- header section strats -->
+         <!-- header section starts -->
          <header class="header_section">
             <div class="container">
-               <nav class="navbar navbar-expand-lg custom_nav-container ">
+               <nav class="navbar  custom_nav-container bg-white">
                   <a class="navbar-brand" href="{% url 'Home' %}"><img width="100" height="100" src="{% static 'newfolder/images/bookgirl.jpg' %}" alt="#" /></a><p style="font-size:20px"><b><span style="color:#E30B5C">THE BOOKSHELF :</span> AMAZING BOOKS ON YOUR WAY.</b></p>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class=""> </span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                      <ul class="navbar-nav">
-                        <li class="nav-item ">
+                        <li class="nav-item">
                            <a class="nav-link" href="{% url 'Home' %}">Home <span class="sr-only">(current)</span></a>
                         </li>
 
-                        <li class="nav-item active">
+                        <li class="nav-item">
+                           <a class="nav-link" href="{% url 'About' %}">About</a>
+                        </li>
+
+                        <li class="nav-item">
                            <a class="nav-link" href="{% url 'Products' %}">Products</a>
                         </li>
                         <li class="nav-item">
@@ -111,106 +114,46 @@
                               </svg>
                            </a>
                         </li>
-                         <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">More </span><span class="caret"></span></a>
-                           <ul class="dropdown-menu">
-                              <li><a href="{% url 'About' %}">About</a></li>
-                           </ul>
-                        </li>
+<!--                         <li class="nav-item active dropdown">-->
+<!--                          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">More </span><span class="caret"></span></a>-->
+<!--                           <ul class="dropdown-menu">-->
+<!--                              <li><a href="#"></a></li>-->
+<!--                              <li><a href="{% url 'About' %}">About</a></li>-->
+
+<!--                           </ul>-->
+<!--                        </li>-->
                      </ul>
                   </div>
                </nav>
             </div>
          </header>
-         <!-- end header section -->
       </div>
-      <!-- inner page section -->
-      <section class="inner_page_head">
-         <div class="container_fuild">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="full">
-                     <h3>Single Product</h3>
-                     <h5 style="color:yellow">{{book.Name}}</h5>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
-      <!-- end inner page section -->
-      <!-- why section -->
-        <section class="ftco-section">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-lg-6 mb-5 ftco-animate" style="margin-top:20px">
-    				<a href="#" class="image-popup"><img src="{{book.Image.url}}"  alt="Colorlib Template" height="450px" width="300px"></a>
-    			</div>
-    			<div class="col-lg-6 product-details pl-md-5 ftco-animate" style="margin-top:30px">
-    				<h3>{{book.Name}}</h3>
-<!--    				<div class="rating d-flex">-->
-<!--							<p class="text-left mr-4">-->
-<!--								<a href="#" class="mr-2">5.0</a>-->
-<!--								<a href="#"><span class="ion-ios-star-outline"></span></a>-->
-<!--								<a href="#"><span class="ion-ios-star-outline"></span></a>-->
-<!--								<a href="#"><span class="ion-ios-star-outline"></span></a>-->
-<!--								<a href="#"><span class="ion-ios-star-outline"></span></a>-->
-<!--								<a href="#"><span class="ion-ios-star-outline"></span></a>-->
-<!--							</p>-->
-<!--							<p class="text-left mr-4">-->
-<!--								<a href="#" class="mr-2" style="color: #000;">100 <span style="color: #bbb;">Rating</span></a>-->
-<!--							</p>-->
-<!--							<p class="text-left">-->
-<!--								<a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>-->
-<!--							</p>-->
-<!--						</div>-->
-    				<p class="price"><span style="color:red">Rs. {{book.Price}}</span></p>
-    				<p>{{book.Description}}</p>
-                   <form  method="post" action="{% url 'save_cart' %}">
-                      {% csrf_token %}
-                      <p style="color:red;">Quantity</p>
-                      <input type="number" min="1" max="20" name="quantity" id="quantity" style="width:150px;" value="0" required>
-                      <p style="color:red;">Total</p>
-                      <input type="text" name="total" id="total" style="width:150px;">
-                      <input type="hidden" name="price" id="price" value="{{book.Price}}">
-                      <input type="hidden" name="user" value="{{request.session.Name}}" readonly>
-                      <input type="hidden" name="bookname" value="{{book.Name}}">
-                      <p><button type="submit" class="btn btn-success">Add to Cart</button></p>
+    <!-- end header section -->
 
-                   </form>
+<!--      account delete section starts-->
+      <div style="margin-top:-370px;text-align:center;height:100%;">
+         <div class="card" style="width:400px;height:500px;margin-left:550px;">
+  <div class="card-body" style="">
+    <h5 class="card-title" style="color:red;"><b>DELETE ACCOUNT</b></h5><br>
+<!--    <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>-->
+    <p class="card-text" style="color:#191970;font-family:Trebuchet MS;">Thank You for Being a Part of Our Community, We’re sorry to see you go.
+       Thank you for being a valued member of our community and for giving us the opportunity to serve you.
+    If there’s anything we could have done better, we would love to hear from you. Your feedback helps us improve and serve our customers better in the future.
+    Sincerely,<br>The Bookshelf Team</p>
 
-    			</div>
-    		</div>
-    	</div>
-    </section>
-      <!-- end why section -->
-      <!-- arrival section -->
-      <section class="arrival_section">
-         <div class="container">
-            <div class="box">
-               <div class="arrival_bg_box">
-                  <img src="{% static 'newfolder/images/arrival-bg.png' %}" alt="">
-               </div>
-               <div class="row">
-                  <div class="col-md-6 ml-auto">
-                     <div class="heading_container remove_line_bt">
-                        <h2>
-                           #NewArrivals
-                        </h2>
-                     </div>
-                     <p style="margin-top: 20px;margin-bottom: 30px;">
-                        Vitae fugiat laboriosam officia perferendis provident aliquid voluptatibus dolorem, fugit ullam sit earum id eaque nisi hic? Tenetur commodi, nisi rem vel, ea eaque ab ipsa, autem similique ex unde!
-                     </p>
-                     <a href="">
-                     Shop Now
-                     </a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
-      <!-- end arrival section -->
+     <p style="color:red;">By clicking delete account link below your account and all associated data have been permanently removed from our system.</p><br>
+    <a href="{% url 'Home' %}" class="card-link">Go Back</a>
+    <a href="{% url 'account_delete' user=request.session.Name %}" class="card-link">Delete Account</a>
+  </div>
+</div>
+      </div>
+      <div style="height:150px;"></div>
+
+
+<!--      end account delete section-->
+
       <!-- footer section -->
-       <footer class="footer_section">
+      <footer class="footer_section">
          <div class="container">
             <div class="row">
                <div class="col-md-4 footer-col">
@@ -288,20 +231,13 @@
          </div>
       </footer>
       <!-- footer section -->
-      <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-      <script>
-         $(document).ready(function(){
 
-		 $("#quantity").change(function(){
-                x = document.getElementById("quantity").value;
-                y = document.getElementById("price").value;
-                result = x*y;
-                document.getElementById("total").value = result
-
-            })
-         })
-
-      </script>
+<!--      css styling-->
+<style>
+body {
+  background-image: url({% static 'newfolder/images/lib7.jpg' %});
+}
+</style>
       <!-- jQery -->
       <script src="{% static 'newfolder/js/jquery-3.4.1.min.js' %}"></script>
       <!-- popper js -->
@@ -310,5 +246,8 @@
       <script src="{% static 'newfolder/js/bootstrap.js' %}"></script>
       <!-- custom js -->
       <script src="{% static 'newfolder/js/custom.js' %}"></script>
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
    </body>
 </html>

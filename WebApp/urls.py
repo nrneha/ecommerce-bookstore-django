@@ -20,4 +20,6 @@ urlpatterns = [
     path('checkout_page/',views.checkout_page,name="checkout_page"),
     path('save_checkout_data/',views.save_checkout_data,name="save_checkout_data"),
     path('payment_page/',views.payment_page,name="payment_page"),
+    path('account_page/',views.account_delete_page,name="account_page"),
+    path('account_delete/<str:user>',views.account_delete,name="account_delete"),
 ]

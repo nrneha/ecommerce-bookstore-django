@@ -150,6 +150,18 @@ def payment_page(request):
     return render(request,"payment.html",{'customer':customer,'pay_str':pay_str})
 
 
+def account_delete_page(request):
+    return render(request,"delete_account.html")
+
+def account_delete(request,user):
+    cart = CartDB.objects.filter(Customer=user)
+    cart.delete()
+    del request.session['Name']
+    del request.session['Password']
+    data = User_Accounts.objects.get(Name=user)
+    data.delete()
+    messages.success(request,"You have successfully deleted your account.")
+    return redirect("Home")
 
 
 
