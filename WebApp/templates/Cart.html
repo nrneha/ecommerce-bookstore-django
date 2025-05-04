@@ -139,66 +139,100 @@
       <!-- end inner page section -->
       <!-- why section -->
       <section class="why_section layout_padding">
-         <div class="container">
-            <h4 style="color:#A52A2A;margin-left:200px">“ Bookshops are my natural habitat.”<span><b>– Kathy Lette.</b></span> </h4>
-
-
-            <div class="row" style="margin-top:50px;">
-
-               <div class="col-lg-8 offset-lg-2">
-                  <div class="full" style="margin-top:50px;margin-left:-250px;">
-
-                      <table width="100%" border="2" class="cart" style="padding-left:25px;">
-                          <thead>
-                          <tr style="height:100px;">
-                              <th>Product Id</th>
-                              <th>Book</th>
-                              <th>Price</th>
-                              <th>Quantity</th>
-                              <th>Total</th>
-                              <th></th>
-
-                          </tr>
-                          </thead>
-                         <tbody>
-                         {% for i in data %}
-                         <tr style="height:70px;">
-                            <td>{{i.id}}</td>
-                            <td>{{i.Book}}</td>
-                            <td>{{i.Price}}</td>
-                            <td>{{i.Quantity}}</td>
-                            <td>{{i.Total}}</td>
-                            <td><a href="{% url 'remove_cartitem' b_id=i.id %}"><button class="btn btn-info">Remove</button></a></td>
-                         </tr>
-                         {% endfor %}
-                         </tbody>
-                      </table>
-                  </div>
-               </div>
+         <div class="container" style="font-family: 'Georgia', serif; margin-top: 40px; text-align: center;">
+            <h4 style="color: #5a4632; font-size: 28px; margin-bottom: 40px;">
+              “Bookshops are my natural habitat.” 
+              <span><b>– Kathy Lette.</b></span>
+            </h4>
+          
+            <div class="row" style="justify-content: center;">
+              <div class="col-lg-12">
+                <div class="full" style="display: flex; justify-content: center;">
+          
+                  <table width="95%" border="0" class="cart" 
+                         style="border-collapse: collapse; box-shadow: 0 8px 24px rgba(228, 220, 220, 0.1); border-radius: 10px; overflow: hidden; background-color: #fcfbf7; font-size: 17px;">
+          
+                    <thead>
+                      <tr style="background-color: #e8e0d6; color: #eee9e5; height: 70px;">
+                        <th style="padding: 14px; border-bottom: 2px solid #dcd2c2;">Product ID</th>
+                        <th style="padding: 14px; border-bottom: 2px solid #dcd2c2;">Book</th>
+                        <th style="padding: 14px; border-bottom: 2px solid #dcd2c2;">Price</th>
+                        <th style="padding: 14px; border-bottom: 2px solid #dcd2c2;">Quantity</th>
+                        <th style="padding: 14px; border-bottom: 2px solid #dcd2c2;">Total</th>
+                        <th style="padding: 14px; border-bottom: 2px solid #dcd2c2;"></th>
+                      </tr>
+                    </thead>
+          
+                    <tbody>
+                      {% for i in data %}
+                      <tr style="height: 65px; background-color: #fefbf1; transition: background 0.3s;"
+                          onmouseover="this.style.backgroundColor='#f4f1ec'" 
+                          onmouseout="this.style.backgroundColor='#fffefb'">
+                        <td style="padding: 12px;">{{ i.id }}</td>
+                        <td style="padding: 12px;">{{ i.Book }}</td>
+                        <td style="padding: 12px;">₹{{ i.Price }}</td>
+                        <td style="padding: 12px;">{{ i.Quantity }}</td>
+                        <td style="padding: 12px;">₹{{ i.Total }}</td>
+                        <td style="padding: 12px;">
+                          <a href="{% url 'remove_cartitem' b_id=i.id %}">
+                            <button style="background-color: #4e3f35; border: none; color: white; padding: 8px 14px; border-radius: 6px; cursor: pointer;">
+                              Remove
+                            </button>
+                          </a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+          
+                </div>
+              </div>
             </div>
-         </div>
+          </div>
+          
+          
+          
       </section>
       <!-- end why section -->
 <!--Cart Total Table-->
-     <div>
-        <div style="margin-left:110px;"><h4 style="color:red;"><b>CART TOTAL</b></h4></div>
-        <div style="margin-left:110px;">
-           <table width="50%">
-              <tr style="height:50px;background-color:	#AFE1AF;">
-                 <th>Subtotal</th>
-                 <th>Delivery Fee</th>
-                 <th>Total</th>
-              </tr>
-              <tr>
-                 <td>{{subtotal}} Rs</td>
-                 <td>{{delivery}} Rs</td>
-                 <td>{{total}} Rs</td>
-              </tr>
-           </table>
-        </div>
-<div style="margin-left:950px;">
-      <a href="{% url 'checkout_page' %}"><button class="btn btn-danger" style="height:60px;"><b>Proceeded to checkout</b></button></a><br><br>
-</div>
+<div style="font-family: 'Georgia', serif; margin-top: 50px; text-align: center;">
+
+   <!-- Cart Total Header -->
+   <h4 style="color: #5a4632; font-size: 28px; margin-bottom: 20px;"> 
+     <b>CART TOTAL</b>
+   </h4>
+ 
+   <!-- Cart Total Table -->
+   <div style="display: flex; justify-content: center;">
+     <table width="60%" style="border-collapse: collapse; box-shadow: 0 8px 24px rgba(0,0,0,0.1); border-radius: 10px; overflow: hidden; background-color: #fcfbf7; font-size: 17px;">
+       <thead>
+         <tr style="background-color: #e8e0d6; color: #3e2f23; height: 60px;">
+           <th style="padding: 14px; border-bottom: 2px solid #dcd2c2;">Subtotal</th>
+           <th style="padding: 14px; border-bottom: 2px solid #dcd2c2;">Delivery Fee</th>
+           <th style="padding: 14px; border-bottom: 2px solid #dcd2c2;">Total</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr style="height: 60px; background-color: #fffefb;">
+           <td style="padding: 12px;">{{subtotal}} Rs</td>
+           <td style="padding: 12px;">{{delivery}} Rs</td>
+           <td style="padding: 12px;">{{total}} Rs</td>
+         </tr>
+       </tbody>
+     </table>
+   </div>
+ 
+   <!-- Checkout Button -->
+   <div style="margin-top: 30px;">
+     <a href="{% url 'checkout_page' %}">
+       <button style="background-color: #4e3f35; border: none; color: white; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-size: 18px;">
+         <b>Proceed to Checkout</b>
+       </button>
+     </a>
+   </div>
+ 
+ </div><br>
+ 
 
 
 <!--    End Cart Total  -->

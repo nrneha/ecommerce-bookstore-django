@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 {% load static %}
 <html>
@@ -23,20 +22,24 @@
       <!-- responsive style -->
       <link href="{% static 'newfolder/css/responsive.css' %}" rel="stylesheet" />
    </head>
-   <body class="sub_page">
+   <body>
       <div class="hero_area">
-         <!-- header section strats -->
+         <!-- header section starts -->
          <header class="header_section">
             <div class="container">
-               <nav class="navbar navbar-expand-lg custom_nav-container ">
+               <nav class="navbar  custom_nav-container bg-white">
                   <a class="navbar-brand" href="{% url 'Home' %}"><img width="100" height="100" src="{% static 'newfolder/images/bookgirl.jpg' %}" alt="#" /></a><p style="font-size:20px"><b><span style="color:#E30B5C">THE BOOKSHELF :</span> AMAZING BOOKS ON YOUR WAY.</b></p>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class=""> </span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                      <ul class="navbar-nav">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                            <a class="nav-link" href="{% url 'Home' %}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item">
+                           <a class="nav-link" href="{% url 'About' %}">About</a>
                         </li>
 
                         <li class="nav-item">
@@ -111,127 +114,65 @@
                               </svg>
                            </a>
                         </li>
-                         <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">More </span><span class="caret"></span></a>
-                           <ul class="dropdown-menu">
-                              <li><a href="{% url 'About' %}">About</a></li>
-                           </ul>
-                        </li>
+<!--                         <li class="nav-item active dropdown">-->
+<!--                          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">More </span><span class="caret"></span></a>-->
+<!--                           <ul class="dropdown-menu">-->
+<!--                              <li><a href="#"></a></li>-->
+<!--                              <li><a href="{% url 'About' %}">About</a></li>-->
+
+<!--                           </ul>-->
+<!--                        </li>-->
                      </ul>
                   </div>
                </nav>
             </div>
          </header>
-         <!-- end header section -->
       </div>
-      <!-- inner page section -->
-      <section class="inner_page_head">
-         <div class="container_fuild">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="full">
-                     <h3>Checkout Page</h3>
-                  </div>
-               </div>
+    <!-- end header section -->
+     <!-- customer's testimonial section starts -->
+      <div style="margin-top:-370px;text-align:center;height:100%;padding: 10px;">
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-lg-4 mb-4">
+              <div class="card h-100 shadow">
+                <div class="card-body">
+                  <h5 class="card-title">Title 1</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
             </div>
-         </div>
-      </section>
-      <!-- end inner page section -->
-      <!-- why section -->
-      <section class="why_section layout_padding">
-         <div class="container">
-             <h4 style="color:#A52A2A; text-align: center;">
-                 “Your order is a Reminder of the Trust You've Placed on Us 😊. - Thank You for Your Order..!!”
-             </h4>
-     
-             <div class="row" style="margin-top:50px;">
-     
-                 <!-- Left Column for Form -->
-                 <div class="col-lg-8" style="background-color: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                     <form method="post" action="{% url 'save_checkout_data' %}">
-                         {% csrf_token %}
-                         <fieldset>
-                             <div style="margin-bottom: 20px;">
-                                 <input type="text" placeholder="Enter your full name" name="name" value="{{request.session.Name}}" readonly style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid #ccc;"/>
-                             </div>
-                             <div style="margin-bottom: 20px;">
-                                 <input type="email" placeholder="Enter your email address" name="email" required style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid #ccc;"/>
-                             </div>
-                             <div style="margin-bottom: 20px;">
-                                 <input type="text" placeholder="Enter Mobile" name="mobile" required style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid #ccc;"/>
-                             </div>
-                             <div style="margin-bottom: 20px;">
-                                 <input type="text" placeholder="Total" name="total" value="{{total}}" readonly style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid #ccc; background-color: #f2f2f2;"/>
-                             </div>
-                             <div style="margin-bottom: 20px;">
-                                 <textarea placeholder="Enter your Address" required name="address" style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
-                             </div>
-                             <div style="text-align: center;">
-                                 <input type="submit" value="Pay Now" style="padding: 12px 30px; background-color: #D2691E; border: none; color: white; font-size: 16px; border-radius: 5px; cursor: pointer;"/>
-                             </div>
-                         </fieldset>
-                     </form>
-                 </div>
-     
-                 <!-- Final amount section -->
-                 <div class="col-lg-3" style="margin-top: 50px;">
-                     <div style="font-family: 'Georgia', serif; text-align: center;">
-                    
-                         <p style="color: #5a4632; font-size: 18px; margin-bottom: 20px;">
-                             <b>Your Cart Summary:</b>
-                         </p>           
-                         <div style="background-color: #fcfbf7; padding: 20px; border-radius: 10px; border: 1px solid #dcd2c2; font-size: 18px; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                             <div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 2px solid #dcd2c2;">
-                                 <span>Subtotal:</span> <span style="color: #D2691E;">{{subtotal}} Rs</span>
-                             </div>
-                             <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 2px solid #dcd2c2;">
-                                 <span>Delivery:</span> <span style="color: #D2691E;">{{delivery}} Rs</span>
-                             </div>
-                             <div style="display: flex; justify-content: space-between; padding-top: 10px; font-size: 20px; font-weight: bold;">
-                                 <span>Total:</span> <span style="color: #D2691E;">{{total}} Rs</span>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-     
-             </div>
-         </div>
-     </section>
-     
-     
-     
-     
-     
-     
-      <!-- end why section -->
-      <!-- arrival section -->
-      <section class="arrival_section">
-         <div class="container">
-            <div class="box">
-               <div class="arrival_bg_box">
-                  <img src="{% static 'newfolder/images/arrival-bg.png' %}" alt="">
-               </div>
-               <div class="row">
-                  <div class="col-md-6 ml-auto">
-                     <div class="heading_container remove_line_bt">
-                        <h2>
-                           #NewArrivals
-                        </h2>
-                     </div>
-                     <p style="margin-top: 20px;margin-bottom: 30px;">
-                        Vitae fugiat laboriosam officia perferendis provident aliquid voluptatibus dolorem, fugit ullam sit earum id eaque nisi hic? Tenetur commodi, nisi rem vel, ea eaque ab ipsa, autem similique ex unde!
-                     </p>
-                     <a href="">
-                     Shop Now
-                     </a>
-                  </div>
-               </div>
+          
+            <!-- Card 2 -->
+            <div class="col-lg-4 mb-4">
+              <div class="card h-100 shadow">
+                <div class="card-body">
+                  <h5 class="card-title">Title 2</h5>
+                  <p class="card-text">Some more text that complements the first card. Add testimonials or info here.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
             </div>
-         </div>
-      </section>
-      <!-- end arrival section -->
+          
+            <!-- Card 3 -->
+            <div class="col-lg-4 mb-4">
+              <div class="card h-100 shadow">
+                <div class="card-body">
+                  <h5 class="card-title">Title 3</h5>
+                  <p class="card-text">Another supporting paragraph to describe content related to the section.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+    </div>
+    <!-- end customer's testimonial section -->
+      
+
       <!-- footer section -->
-       <footer class="footer_section">
+      <footer class="footer_section">
          <div class="container">
             <div class="row">
                <div class="col-md-4 footer-col">
@@ -309,6 +250,13 @@
          </div>
       </footer>
       <!-- footer section -->
+
+<!--      css styling-->
+<style>
+body {
+  background-image: url("{% static 'newfolder/images/lib7.jpg' %}");
+}
+</style>
       <!-- jQery -->
       <script src="{% static 'newfolder/js/jquery-3.4.1.min.js' %}"></script>
       <!-- popper js -->
@@ -317,5 +265,8 @@
       <script src="{% static 'newfolder/js/bootstrap.js' %}"></script>
       <!-- custom js -->
       <script src="{% static 'newfolder/js/custom.js' %}"></script>
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
    </body>
 </html>

@@ -22,4 +22,5 @@ urlpatterns = [
     path('payment_page/',views.payment_page,name="payment_page"),
     path('account_page/',views.account_delete_page,name="account_page"),
     path('account_delete/<str:user>',views.account_delete,name="account_delete"),
+    path("customer_testimonials/",views.customer_testimonials,name="customer_testimonials")
 ]

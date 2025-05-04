@@ -16,7 +16,6 @@ def Home_page(request):
 def About_page(request):
     return render(request, "About.html")
 
-
 def Contact_page(request):
     return render(request, "Contact.html")
 
@@ -186,3 +185,6 @@ def account_delete(request, user):
     data.delete()  # deleting the account details from the db
     messages.success(request, "You have successfully deleted your account.")
     return redirect("Home")
+
+def customer_testimonials(request):
+    return render(request,"customer_testimonials.html")
