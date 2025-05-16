@@ -22,5 +22,22 @@ urlpatterns = [
     path('payment_page/',views.payment_page,name="payment_page"),
     path('account_page/',views.account_delete_page,name="account_page"),
     path('account_delete/<str:user>',views.account_delete,name="account_delete"),
-    path("customer_testimonials/",views.customer_testimonials,name="customer_testimonials")
+    path("customer_testimonials/",views.customer_testimonials,name="customer_testimonials"),
+    path('write_review/',views.write_review,name="write_review",)
 ]
+
+
+
+
+
+
+
+
+
+
+#    <div style="background-color:rgba(239, 223, 208, 0.742) ;
+#             margin-top: 40px;">
+#             <div style="text-align: center;padding-top: 20px;">
+#             <strong><p style="color:black;font-size: 21px;font-family: 'Courier New', Courier, monospace;">You’ve read the story—now make it yours.
+# Let others see the book through your eyes. Your voice might be just what another reader needs.</p> </strong>
+# </div>

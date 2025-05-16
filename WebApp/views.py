@@ -186,5 +186,10 @@ def account_delete(request, user):
     messages.success(request, "You have successfully deleted your account.")
     return redirect("Home")
 
+
 def customer_testimonials(request):
     return render(request,"customer_testimonials.html")
+
+def write_review(request):
+    return render(request,"review_form.html")
+

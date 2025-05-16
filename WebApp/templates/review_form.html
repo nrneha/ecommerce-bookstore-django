@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Book Review Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url("{% static 'newfolder/images/lib1.jpg' %}");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .review-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .review-card h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn {
+            background-color: #28a745;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+
+        .back-btn {
+            background-color: #6c757d;
+        }
+
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="review-card">
+        <div class="logo_footer">
+            <a href="#"><img width="55" height="40" src="{% static 'newfolder/images/bookgirl.jpg' %}" alt="#" /></a>
+            <span style="font-size:13px"><b><span style="color:#E30B5C">THE BOOKSHELF :</span> AMAZING BOOKS ON
+                    YOUR WAY.</b></p>
+        </div><br>
+        <p style="font-family:'Times New Roman', Times, serif;font-weight: bold;color: rgb(11, 11, 11);"><span style="color: #E30B5C;">Hey, {{request.session.Name}} 😊</span>, Write a few lines about your favorite read—someone’s waiting to hear it.💗</p><br>
+
+        <form action="#" method="post">
+            {% csrf_token %}
+            <label for="book-title">Book Title:</label>
+            <input type="text" id="book-title" name="book_title" placeholder="Enter the book's title" required>
+
+            <label for="review">Your Review:</label>
+            <textarea id="review" name="review" rows="5" placeholder="Write your thoughts about the book..."
+                required></textarea>
+
+            <div class="button-group">
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="button" class="back-btn" onclick="window.location.href=''">Back</button>
+            </div>
+        </form>
+          
+    </div>
+
+</body>
+
+</html>
