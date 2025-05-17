@@ -1,14 +1,16 @@
 
-<!--
+
+  <!--
 Author: Colorlib
 Author URL: https://colorlib.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
-<title>The Bookshelf Login</title>
+<title>The Boohshelf : SignUp</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -19,12 +21,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
 <!-- //web font -->
 </head>
-<body>
+<body class="bg_img">
 	<!-- main -->
 	<div class="main-w3layouts wrapper">
-		<h1>The Bookshelf :LogIn</h1>
-		<div class="main-agileinfo">
+		<div class="main-agileinfo" style="background-color: rgba(182, 142, 11, 0.729);">
 			<div class="agileits-top">
+         <div style="background-color: #fbf8f800;width: 250px;height: 220px;text-align: center;margin-left: 85px;">
+           <h2 style="color: rgb(247, 247, 226);font-size: 39px;">THE BOOKSHELF : <span style="font-size: 30px;color:rgb(43, 42, 42);">AMAZING BOOKS ON YOUR WAY.</span></h2><br>
+        </div><br>
+
 				<form action="{% url 'User_Login' %}" method="post">
                   {% csrf_token %}
 					<input class="text" type="text" name="user" placeholder="Username" required=""><br><br>
@@ -38,22 +43,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<p>Don't have an Account? <a href="{% url 'UserAccount_Reg' %}"> SignUp Now!</a></p>
 			</div>
 		</div>
-		<ul class="colorlib-bubbles">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
 	</div>
 	<!-- //main -->
 
-    <style>
+  <style>
+
       /*--
 Author: Colorlib
 Author URL: https://colorlib.com
@@ -68,10 +62,15 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+ 
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block;
+}
+
+.bg_img{
+  background-image: url("{% static 'newfolder/images/lib1.jpg' %}");
 }
 
 ol, ul {
@@ -165,12 +164,12 @@ img {
 
 /*-- end reset --*/
 body {
-  background: #76b852;
+  background: #ffffff;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #76b852, #8DC26F);
-  background: -moz-linear-gradient(to top, #76b852, #8DC26F);
-  background: -o-linear-gradient(to top, #76b852, #8DC26F);
-  background: linear-gradient(to top, #76b852, #8DC26F);
+  background: -webkit-linear-gradient(to top, #ffffff, #ffffff);
+  background: -moz-linear-gradient(to top, #ffffff, #ffffff);
+  background: -o-linear-gradient(to top, #ffffff, #ffffff);
+  background: linear-gradient(to top, #ffffff, #ffffff);
   background-size: cover;
   background-attachment: fixed;
   font-family: 'Roboto', sans-serif;
@@ -210,7 +209,7 @@ input[type="text"], input[type="email"], input[type="password"] {
   display: block;
   border: none;
   padding: 0.8em;
-  border: solid 1px rgba(255, 255, 255, 0.37);
+  border: solid 1.5px rgba(248, 245, 245, 0.964);
   -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
   transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
   background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #fff 4%);
@@ -218,7 +217,7 @@ input[type="text"], input[type="email"], input[type="password"] {
   background-position: -800px 0;
   background-size: 100%;
   background-repeat: no-repeat;
-  color: #fff;
+  color: #fbf8f8;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -264,10 +263,10 @@ input.email, input.text.w3lpass {
 
 input[type="submit"] {
   font-size: .9em;
-  color: #fff;
-  background: #76b852;
+  color: #ffffff;
+  background:rgb(235, 40, 40);
   outline: none;
-  border: 1px solid #76b852;
+  border: 1px solid #f3833e;
   cursor: pointer;
   padding: 0.9em;
   -webkit-appearance: none;
@@ -282,7 +281,7 @@ input[type="submit"]:hover {
   -o-transition: .5s all;
   -ms-transition: .5s all;
   transition: .5s all;
-  background: #8DC26F;
+  background:  rgb(236, 100, 100);
 }
 
 .agileits-top p {
@@ -302,7 +301,7 @@ input[type="submit"]:hover {
 }
 
 .agileits-top p a:hover {
-  color: #76b852;
+  color: rgb(200, 66, 66);
 }
 
 /*-- //main --*/
@@ -817,428 +816,85 @@ input.checkbox:checked:after {
     padding: 1em 0 0;
   }
 }
-    </style>
-</body>
-</html>
+  </style>
+  <script>
 
+      $(function() {
+	$(".btn").click(function() {
+		$(".form-signin").toggleClass("form-signin-left");
+    $(".form-signup").toggleClass("form-signup-left");
+    $(".frame").toggleClass("frame-long");
+    $(".signup-inactive").toggleClass("signup-active");
+    $(".signin-active").toggleClass("signin-inactive");
+    $(".forgot").toggleClass("forgot-left");
+    $(this).removeClass("idle").addClass("active");
+	});
+});
 
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<br>-->
-<!--<br>-->
-<!--    <div class="cont">-->
-<!--        <div class="form sign-in">-->
-<!--            <h2>Welcome</h2>-->
-<!--            <form method="post" action="{% url 'User_Login' %}">-->
-<!--                {% csrf_token %}-->
-<!--            <label>-->
-<!--                <span>Username</span>-->
-<!--                <input type="text" name="user"/>-->
-<!--            </label>-->
-<!--            <label>-->
-<!--                <span>Password</span>-->
-<!--                <input type="password" name="password"/>-->
-<!--            </label>-->
-<!--            <p class="forgot-pass">Forgot password?</p>-->
-<!--            <button type="submit" class="submit">Sign In</button>-->
-<!--            </form>-->
-<!--        </div>-->
+$(function() {
+	$(".btn-signup").click(function() {
+  $(".nav").toggleClass("nav-up");
+  $(".form-signup-left").toggleClass("form-signup-down");
+  $(".success").toggleClass("success-left");
+  $(".frame").toggleClass("frame-short");
+	});
+});
 
-<!--        <div class="sub-cont">-->
-<!--            <div class="img">-->
-<!--                <div class="img__text m&#45;&#45;up">-->
+$(function() {
+	$(".btn-signin").click(function() {
+  $(".btn-animate").toggleClass("btn-animate-grow");
+  $(".welcome").toggleClass("welcome-left");
+  $(".cover-photo").toggleClass("cover-photo-down");
+  $(".frame").toggleClass("frame-short");
+  $(".profile-photo").toggleClass("profile-photo-down");
+  $(".btn-goback").toggleClass("btn-goback-up");
+  $(".forgot").toggleClass("forgot-fade");
+	});
+});
 
-<!--                    <h3>Don't have an account? Please Sign up!<h3>-->
-<!--                </div>-->
-<!--                <div class="img__text m&#45;&#45;in">-->
-
-<!--                    <h3>If you already has an account, just sign in.<h3>-->
-<!--                </div>-->
-<!--                <div class="img__btn">-->
-<!--                    <span class="m&#45;&#45;up">Sign Up</span>-->
-<!--                    <span class="m&#45;&#45;in">Sign In</span>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <form  method="post" action="{% url 'Save_UserAccount' %}" name="form1" onsubmit="return  ValidatingFn()" enctype="multipart/form-data">-->
-<!--                {% csrf_token %}-->
-<!--                <div class="form sign-up">-->
-<!--                <h2>Create your Account</h2>-->
-<!--                <label>-->
-<!--                    <span>Name</span>-->
-<!--                    <input type="text" name="user"/>-->
-<!--                </label>-->
-<!--                <label>-->
-<!--                    <span>Email</span>-->
-<!--                    <input type="email" name="email"/>-->
-<!--                </label>-->
-<!--                <label>-->
-<!--                    <span>Password</span>-->
-<!--                    <input type="password" name="pass1"/>-->
-<!--                </label>-->
-<!--                <label>-->
-<!--                    <span>Confirm Password</span>-->
-<!--                    <input type="password" name="pass2"/>-->
-<!--                </label>-->
-<!--                <label>-->
-<!--                    <span>Profile Picture</span>-->
-<!--                    <input type="file" name="image" required/>-->
-<!--                </label>-->
-<!--                <button type="submit" class="submit">Sign Up</button>-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</form>-->
-<!--    <script>-->
-<!--        document.querySelector('.img__btn').addEventListener('click', function() {-->
-<!--            document.querySelector('.cont').classList.toggle('s&#45;&#45;signup');-->
-<!--        });-->
-<!--    </script>-->
+  </script>
 
 <script>
-    function ValidatingFn(){
-    x = document.form1.pass1.value;
-    y = document.form1.pass2.value;
-   		 if(x.length<8){
-    		alert("Password need at least 8 characters..!!!")
-    		return false
-   		 }
-    	else if(x == y){
-    	return true
-   		 }
-   		 else{
-   		 alert("Password does not match..!!")
-   		 }
- }
+	 function ValidatingFn(){
+      x = document.form1.password1.value;
+      y = document.form1.password2.value;
+            if(x.length<8){
+                alert("Password required at least 8 characters")
+                return false
+           }
+           else if(x == y){
+                return true
+                }
+           else{
+                alert("Password does not match!!")
+                return false
+                }
 
+}
 </script>
 
-<!--<style>-->
-<!--    *,-->
-<!--*:before,-->
-<!--*:after {-->
-<!--    box-sizing: border-box;-->
-<!--    margin: 0;-->
-<!--    padding: 0;-->
-<!--}-->
 
-<!--body {-->
-<!--    font-family: 'Open Sans', Helvetica, Arial, sans-serif;-->
-<!--    background: #ffffff;-->
-<!--}-->
-
-<!--input,-->
-<!--button {-->
-<!--    border: none;-->
-<!--    outline: none;-->
-<!--    background: none;-->
-<!--    font-family: 'Open Sans', Helvetica, Arial, sans-serif;-->
-<!--}-->
-
-<!--.tip {-->
-<!--    font-size: 20px;-->
-<!--    margin: 40px auto 50px;-->
-<!--    text-align: center;-->
-<!--}-->
-
-<!--.cont {-->
-<!--    border-radius: 20px;-->
-<!--    overflow: hidden;-->
-<!--    position: relative;-->
-<!--    width: 900px;-->
-<!--    height: 550px;-->
-<!--    margin: 0 auto 100px;-->
-<!--    background: #fff;-->
-<!--    box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.3), 10px 10px 15px rgba(70, 70, 70, 0.15), inset -10px -10px 15px rgba(255, 255, 255, 0.3), inset 10px 10px 15px rgba(70, 70, 70, 0.15);-->
-<!--}-->
-
-<!--.form {-->
-<!--    position: relative;-->
-<!--    width: 640px;-->
-<!--    height: 100%;-->
-<!--    -webkit-transition: -webkit-transform 1.2s ease-in-out;-->
-<!--    transition: -webkit-transform 1.2s ease-in-out;-->
-<!--    transition: transform 1.2s ease-in-out;-->
-<!--    transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;-->
-<!--    padding: 50px 30px 0;-->
-<!--}-->
-
-<!--.sub-cont {-->
-<!--    overflow: hidden;-->
-<!--    position: absolute;-->
-<!--    left: 640px;-->
-<!--    top: 0;-->
-<!--    width: 900px;-->
-<!--    height: 100%;-->
-<!--    padding-left: 260px;-->
-<!--    background: #fff;-->
-<!--    -webkit-transition: -webkit-transform 1.2s ease-in-out;-->
-<!--    transition: -webkit-transform 1.2s ease-in-out;-->
-<!--    transition: transform 1.2s ease-in-out;-->
-<!--    transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;-->
-<!--}-->
-
-<!--.cont.s&#45;&#45;signup .sub-cont {-->
-<!--    -webkit-transform: translate3d(-640px, 0, 0);-->
-<!--    transform: translate3d(-640px, 0, 0);-->
-<!--}-->
-
-<!--button {-->
-<!--    display: block;-->
-<!--    margin: 0 auto;-->
-<!--    width: 260px;-->
-<!--    height: 36px;-->
-<!--    border-radius: 30px;-->
-<!--    color: #fff;-->
-<!--    font-size: 15px;-->
-<!--    cursor: pointer;-->
-<!--}-->
-
-<!--.img {-->
-<!--    overflow: hidden;-->
-<!--    z-index: 2;-->
-<!--    position: absolute;-->
-<!--    left: 0;-->
-<!--    top: 0;-->
-<!--    width: 260px;-->
-<!--    height: 100%;-->
-<!--    padding-top: 360px;-->
-<!--}-->
-
-<!--.img:before {-->
-<!--    content: '';-->
-<!--    position: absolute;-->
-<!--    right: 0;-->
-<!--    top: 0;-->
-<!--    width: 900px;-->
-<!--    height: 100%;-->
-<!--    background-image: url("ext.jpg");-->
-<!--    opacity: .8;-->
-<!--    background-size: cover;-->
-<!--    -webkit-transition: -webkit-transform 1.2s ease-in-out;-->
-<!--    transition: transform 1.2s ease-in-out;-->
-<!--    transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;-->
-<!--}-->
-
-<!--.img:after {-->
-<!--    content: '';-->
-<!--    position: absolute;-->
-<!--    left: 0;-->
-<!--    top: 0;-->
-<!--    width: 100%;-->
-<!--    height: 100%;-->
-<!--    background: rgba(0, 0, 0, 0.6);-->
-<!--}-->
-
-<!--.cont.s&#45;&#45;signup .img:before {-->
-<!--    -webkit-transform: translate3d(640px, 0, 0);-->
-<!--    transform: translate3d(640px, 0, 0);-->
-<!--}-->
-
-<!--.img__text {-->
-<!--    z-index: 2;-->
-<!--    position: absolute;-->
-<!--    left: 0;-->
-<!--    top: 50px;-->
-<!--    width: 100%;-->
-<!--    padding: 0 20px;-->
-<!--    text-align: center;-->
-<!--    color: #fff;-->
-<!--    -webkit-transition: -webkit-transform 1.2s ease-in-out;-->
-<!--    transition: -webkit-transform 1.2s ease-in-out;-->
-<!--    transition: transform 1.2s ease-in-out;-->
-<!--    transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;-->
-<!--}-->
-
-<!--.img__text h2 {-->
-<!--    margin-bottom: 10px;-->
-<!--    font-weight: normal;-->
-<!--}-->
-
-<!--.img__text p {-->
-<!--    font-size: 14px;-->
-<!--    line-height: 1.5;-->
-<!--}-->
-
-<!--.cont.s&#45;&#45;signup .img__text.m&#45;&#45;up {-->
-<!--    -webkit-transform: translateX(520px);-->
-<!--    transform: translateX(520px);-->
-<!--}-->
-
-<!--.img__text.m&#45;&#45;in {-->
-<!--    -webkit-transform: translateX(-520px);-->
-<!--    transform: translateX(-520px);-->
-<!--}-->
-
-<!--.cont.s&#45;&#45;signup .img__text.m&#45;&#45;in {-->
-<!--    -webkit-transform: translateX(0);-->
-<!--    transform: translateX(0);-->
-<!--}-->
-
-<!--.img__btn {-->
-<!--    overflow: hidden;-->
-<!--    z-index: 2;-->
-<!--    position: relative;-->
-<!--    width: 100px;-->
-<!--    height: 36px;-->
-<!--    margin: 0 auto;-->
-<!--    background: transparent;-->
-<!--    color: #fff;-->
-<!--    text-transform: uppercase;-->
-<!--    font-size: 15px;-->
-<!--    cursor: pointer;-->
-<!--}-->
-
-<!--.img__btn:after {-->
-<!--    content: '';-->
-<!--    z-index: 2;-->
-<!--    position: absolute;-->
-<!--    left: 0;-->
-<!--    top: 0;-->
-<!--    width: 100%;-->
-<!--    height: 100%;-->
-<!--    border: 2px solid #fff;-->
-<!--    border-radius: 30px;-->
-<!--}-->
-
-<!--.img__btn span {-->
-<!--    position: absolute;-->
-<!--    left: 0;-->
-<!--    top: 0;-->
-<!--    display: -webkit-box;-->
-<!--    display: flex;-->
-<!--    -webkit-box-pack: center;-->
-<!--    justify-content: center;-->
-<!--    -webkit-box-align: center;-->
-<!--    align-items: center;-->
-<!--    width: 100%;-->
-<!--    height: 100%;-->
-<!--    -webkit-transition: -webkit-transform 1.2s;-->
-<!--    transition: -webkit-transform 1.2s;-->
-<!--    transition: transform 1.2s;-->
-<!--    transition: transform 1.2s, -webkit-transform 1.2s;-->
-<!--}-->
-
-<!--.img__btn span.m&#45;&#45;in {-->
-<!--    -webkit-transform: translateY(-72px);-->
-<!--    transform: translateY(-72px);-->
-<!--}-->
-
-<!--.cont.s&#45;&#45;signup .img__btn span.m&#45;&#45;in {-->
-<!--    -webkit-transform: translateY(0);-->
-<!--    transform: translateY(0);-->
-<!--}-->
-
-<!--.cont.s&#45;&#45;signup .img__btn span.m&#45;&#45;up {-->
-<!--    -webkit-transform: translateY(72px);-->
-<!--    transform: translateY(72px);-->
-<!--}-->
-
-<!--h2 {-->
-<!--    width: 100%;-->
-<!--    font-size: 26px;-->
-<!--    text-align: center;-->
-<!--}-->
-
-<!--label {-->
-<!--    display: block;-->
-<!--    width: 260px;-->
-<!--    margin: 25px auto 0;-->
-<!--    text-align: center;-->
-<!--}-->
-
-<!--label span {-->
-<!--    font-size: 12px;-->
-<!--    color: #cfcfcf;-->
-<!--    text-transform: uppercase;-->
-<!--}-->
-
-<!--input {-->
-<!--    display: block;-->
-<!--    width: 100%;-->
-<!--    margin-top: 5px;-->
-<!--    padding-bottom: 5px;-->
-<!--    font-size: 16px;-->
-<!--    border-bottom: 1px solid rgba(0, 0, 0, 0.4);-->
-<!--    text-align: center;-->
-<!--}-->
-
-<!--.forgot-pass {-->
-<!--    margin-top: 15px;-->
-<!--    text-align: center;-->
-<!--    font-size: 12px;-->
-<!--    color: #cfcfcf;-->
-<!--}-->
-
-<!--.submit {-->
-<!--    margin-top: 40px;-->
-<!--    margin-bottom: 20px;-->
-<!--    background: #d4af7a;-->
-<!--    text-transform: uppercase;-->
-<!--}-->
-
-<!--.fb-btn {-->
-<!--    border: 2px solid #d3dae9;-->
-<!--    color: #8fa1c7;-->
-<!--}-->
-
-<!--.fb-btn span {-->
-<!--    font-weight: bold;-->
-<!--    color: #455a81;-->
-<!--}-->
-
-<!--.sign-in {-->
-<!--    -webkit-transition-timing-function: ease-out;-->
-<!--    transition-timing-function: ease-out;-->
-<!--}-->
-
-<!--.cont.s&#45;&#45;signup .sign-in {-->
-<!--    -webkit-transition-timing-function: ease-in-out;-->
-<!--    transition-timing-function: ease-in-out;-->
-<!--    -webkit-transition-duration: 1.2s;-->
-<!--    transition-duration: 1.2s;-->
-<!--    -webkit-transform: translate3d(640px, 0, 0);-->
-<!--    transform: translate3d(640px, 0, 0);-->
-<!--}-->
-
-<!--.sign-up {-->
-<!--    -webkit-transform: translate3d(-900px, 0, 0);-->
-<!--    transform: translate3d(-900px, 0, 0);-->
-<!--}-->
-
-<!--.cont.s&#45;&#45;signup .sign-up {-->
-<!--    -webkit-transform: translate3d(0, 0, 0);-->
-<!--    transform: translate3d(0, 0, 0);-->
-<!--}-->
-<!--</style>-->
-
-<!--  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
-<!--{% if messages %}-->
-<!--    {% for i in messages %}-->
-<!--        {% if i.tags == 'warning' %}-->
-<!--            <script>-->
-<!--                swal('{{i}}', '', 'warning')-->
-<!--            </script>-->
-<!--        {% elif i.tags == 'error' %}-->
-<!--            <script>-->
-<!--                swal('{{i}}', '', 'error')-->
-<!--            </script>-->
-<!--        {% elif i.tags == 'info' %}-->
-<!--            <script>-->
-<!--                swal('{{i}}', '', 'info')-->
-<!--            </script>-->
-<!--        {% else %}-->
-<!--            <script>-->
-<!--                swal('{{i}}', '', 'success')-->
-<!--            </script>-->
-<!--        {% endif %}-->
-<!--    {% endfor %}-->
-<!--{% endif %}-->
-<!--</body>-->
-<!--</html>-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}', '', 'warning')
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}', '', 'error')
+            </script>
+        {% elif i.tags == 'info' %}
+            <script>
+                swal('{{i}}', '', 'info')
+            </script>
+        {% else %}
+            <script>
+                swal('{{i}}', '', 'success')
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+  </body>
+</html>
