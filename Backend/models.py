@@ -11,6 +11,9 @@ class CategoryDB(models.Model):
     Description = models.TextField(null=True, blank=True)
     Image = models.ImageField(upload_to="Category Image", null=True, blank=True)
 
+    def __str__(self):
+        return self.category
+
 
 class BooksDB(models.Model):
     Name = models.CharField(max_length=100, null=True, blank=True)
@@ -18,3 +21,6 @@ class BooksDB(models.Model):
     Description = models.TextField(null=True, blank=True)
     Price = models.IntegerField(null=True, blank=True)
     Image = models.ImageField(upload_to="Books Image", null=True, blank=True)
+
+    def __str__(self):
+        return self.Name

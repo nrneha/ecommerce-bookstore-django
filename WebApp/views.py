@@ -5,7 +5,6 @@ from WebApp.models import CustomerDB, User_Accounts, CartDB, CheckOutDB
 from django.contrib import messages
 import razorpay
 
-
 # Create your views here.
 
 def Home_page(request):
@@ -28,7 +27,6 @@ def Product_page(request):
 def Filter_Products(request, categ):
     books = BooksDB.objects.filter(Category=categ)  # getting the products by the category
     return render(request, "Filtered_Products.html", {'books': books, 'category': categ})
-
 
 # saving the customer contact details and messages
 def Save_Customer(request):
@@ -72,7 +70,6 @@ def User_Login(request):
         un = request.POST.get('user')
         ps = request.POST.get('password')
         request.session['Name'] = un
-        request.session['Password'] = ps
         if User_Accounts.objects.filter(Name=un,Password=ps).exists():  # checking username and password exist in the db
             messages.success(request, "WELCOME.!")
             return redirect(Home_page)
@@ -85,7 +82,6 @@ def User_Login(request):
 
 def User_Logout(request):
     del request.session['Name']
-    del request.session['Password']
     messages.success(request, "You have been signed out.")
     return redirect(Home_page)
 
@@ -104,6 +100,8 @@ def save_cart(request):
         return redirect(Product_page)
 
 
+
+
 def view_cart(request):
     data = CartDB.objects.filter(Customer=request.session['Name'])  # getting cart details with the user session names
     total = 0
@@ -118,6 +116,7 @@ def view_cart(request):
         total = subtotal + delivery
 
     return render(request, "Cart.html", {'data': data, 'total': total, 'subtotal': subtotal, 'delivery': delivery})
+
 
 
 def remove_cartitem(request, b_id):
@@ -167,7 +166,7 @@ def payment_page(request):
         print(i)
     if request.method == "POST":
         order_currency = "INR"
-        client = razorpay.Client(auth=('rzp_test_U0yRWmp89Hl5OI', 'mXkgiRPKZztlHvSqrXvKzDCu'))
+        client = razorpay.Client(auth=(''))
         payment = client.order.create({'amount': amount, 'currency': order_currency, 'payment_capture': '1'})
     return render(request, "payment.html", {'customer': customer, 'pay_str': pay_str})
 
@@ -189,6 +188,7 @@ def account_delete(request, user):
 
 def customer_testimonials(request):
     return render(request,"customer_testimonials.html")
+
 
 def write_review(request):
     return render(request,"review_form.html")
