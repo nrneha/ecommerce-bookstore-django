@@ -5,6 +5,7 @@ admin.site.register(CustomerDB)
 admin.site.register(User_Accounts)
 admin.site.register(CartDB)
 admin.site.register(CheckOutDB)
+admin.site.register(UserReviews)
 
 
 

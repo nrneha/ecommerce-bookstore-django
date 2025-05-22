@@ -1,14 +1,22 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from Backend.models import BooksDB, CategoryDB
-from WebApp.models import CustomerDB, User_Accounts, CartDB, CheckOutDB
+from WebApp.models import *
 from django.contrib import messages
 import razorpay
+from django.contrib.auth.hashers import make_password,check_password
+from .utils import user_login_required
+from django.core.cache import cache
 
-# Create your views here.
+
 
 def Home_page(request):
-    data = CategoryDB.objects.all()
+    data = cache.get('all_category')
+    print("from cacche",data)
+    if data is None:
+        data = list(CategoryDB.objects.all())
+        cache.set('all_category',data,timeout=60*15)
+        print("from db")
     return render(request, "Home.html", {'data': data})
 
 
@@ -20,13 +28,24 @@ def Contact_page(request):
 
 
 def Product_page(request):
-    books = BooksDB.objects.all()  # getting all products details
+    books = cache.get('all_books')
+    if books is None:
+        books = list(BooksDB.objects.all())  # getting all products details
+        cache.set('all_books',books,timeout=60*15) # set cache timeout 5 minutes for all products
+
     return render(request, "View_Products.html", {'books': books})
 
 
 def Filter_Products(request, categ):
-    books = BooksDB.objects.filter(Category=categ)  # getting the products by the category
+
+    cache_key = f'book_category_{categ}'
+    books = cache.get(cache_key)
+    if books is None:
+        books = list(BooksDB.objects.filter(Category=categ))  # getting the products by the category
+        cache.set(cache_key,books,timeout=60*15) # set cache timeout 5 minutes for books by category
+
     return render(request, "Filtered_Products.html", {'books': books, 'category': categ})
+
 
 # saving the customer contact details and messages
 def Save_Customer(request):
@@ -42,7 +61,12 @@ def Save_Customer(request):
 
 
 def Single_Product(request, b_id):
-    book = BooksDB.objects.get(id=b_id)  # getting single product details by using the product id
+    cache_key=f'single_book_{b_id}'
+    book = cache.get(cache_key)
+    if book is None:
+        book = BooksDB.objects.get(id=b_id) # getting single product details by using the product id
+        cache.set(cache_key,book,timeout=60*15) # set timeout for 5 minutes for a book
+
     return render(request, "Single_Product.html", {'book': book})
 
 
@@ -59,7 +83,7 @@ def Save_UserAccount(request):
         ps = request.POST.get('password1')
 
         # save the user details to User_Account db
-        obj = User_Accounts(Name=nm, Email=em, Password=ps)
+        obj = User_Accounts(Name=nm, Email=em, Password=make_password(ps))  # here user password stored as hashed
         obj.save()
         messages.success(request, "Success! Your account is now active.Please Login.. Happy shopping")
         return redirect(UserAccount_Reg)
@@ -69,23 +93,28 @@ def User_Login(request):
     if request.method == "POST":
         un = request.POST.get('user')
         ps = request.POST.get('password')
-        request.session['Name'] = un
-        if User_Accounts.objects.filter(Name=un,Password=ps).exists():  # checking username and password exist in the db
-            messages.success(request, "WELCOME.!")
-            return redirect(Home_page)
-        else:
-            messages.error(request, "User not found.!")
-            return redirect(UserAccount_Reg)
-    else:
-        return redirect(UserAccount_Reg)
 
+        try:
+            user = User_Accounts.objects.get(Name=un)
+            if check_password(ps,user.Password): # checking  plain text password and hashed password are same
+                request.session['Name']=user.Name
+                messages.success(request, "WELCOME.!")
+                return redirect(Home_page)
+            
+            else:
+                messages.error(request,"Incorrect Password")
+                return redirect(UserAccount_Reg)
+        except User_Accounts.DoesNotExist:
+            messages.error(request,"User not found")
+            return redirect(UserAccount_Reg)
+        
 
 def User_Logout(request):
-    del request.session['Name']
+    del request.session['Name'] # user logging out with deleting the session
     messages.success(request, "You have been signed out.")
     return redirect(Home_page)
 
-
+@user_login_required
 def save_cart(request):
     if request.method == "POST":
         un = request.POST.get('user')
@@ -101,7 +130,7 @@ def save_cart(request):
 
 
 
-
+@user_login_required
 def view_cart(request):
     data = CartDB.objects.filter(Customer=request.session['Name'])  # getting cart details with the user session names
     total = 0
@@ -118,18 +147,18 @@ def view_cart(request):
     return render(request, "Cart.html", {'data': data, 'total': total, 'subtotal': subtotal, 'delivery': delivery})
 
 
-
+@user_login_required
 def remove_cartitem(request, b_id):
-    x = CartDB.objects.get(id=b_id)
+    x = CartDB.objects.get(id=b_id) # getting the product through id and deleting it
     x.delete()
     messages.success(request, "The book has been removed from your cart")
     return redirect(view_cart)
 
 
 def user_login_page(request):
-    return render(request, "UserLogin.html")
+    return render(request, "UserLogin.html") # for viewing signin page
 
-
+@user_login_required
 def checkout_page(request):
     data = CartDB.objects.filter(Customer=request.session['Name'])
     total = 0
@@ -144,7 +173,7 @@ def checkout_page(request):
         total = subtotal + delivery
     return render(request, "CheckoutPage.html", {'subtotal': subtotal, 'delivery': delivery, 'total': total})
 
-
+@user_login_required
 def save_checkout_data(request):
     if request.method == "POST":
         nm = request.POST.get('name')
@@ -156,7 +185,7 @@ def save_checkout_data(request):
         ob.save()  # save checkout details in to checkout db
         return redirect(payment_page)
 
-
+@user_login_required
 def payment_page(request):
     customer = CheckOutDB.objects.order_by('-id').first()
     payy = customer.Total
@@ -170,11 +199,11 @@ def payment_page(request):
         payment = client.order.create({'amount': amount, 'currency': order_currency, 'payment_capture': '1'})
     return render(request, "payment.html", {'customer': customer, 'pay_str': pay_str})
 
-
+@user_login_required
 def account_delete_page(request):
     return render(request, "delete_account.html")
 
-
+@user_login_required
 def account_delete(request, user):
     cart = CartDB.objects.filter(Customer=user)
     cart.delete()
@@ -186,10 +215,23 @@ def account_delete(request, user):
     return redirect("Home")
 
 
-def customer_testimonials(request):
+
+@user_login_required
+def customer_testimonials(request):# testimoial page shows users reviews about the books they read
     return render(request,"customer_testimonials.html")
 
-
-def write_review(request):
+@user_login_required
+def write_review(request):# page for users to write the review of the books they read
     return render(request,"review_form.html")
 
+
+def save_user_review(request,user):
+
+    if request.method == 'POST':
+        book_title = request.POST.get('book_title')
+        review = request.POST.get("review")
+
+        review = UserReviews(book_title=book_title,review=review,user=user)
+        review.save()
+        messages.success(request,"Thank you for your review")
+        return redirect(Home_page)

@@ -23,7 +23,8 @@ urlpatterns = [
     path('account_page/',views.account_delete_page,name="account_page"),
     path('account_delete/<str:user>',views.account_delete,name="account_delete"),
     path("customer_testimonials/",views.customer_testimonials,name="customer_testimonials"),
-    path('write_review/',views.write_review,name="write_review",)
+    path('write_review/',views.write_review,name="write_review",),
+    path('save_review/<str:user>',views.save_user_review,name="save_review")
 ]
 
 

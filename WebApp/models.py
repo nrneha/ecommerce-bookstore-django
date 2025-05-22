@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 
 class CustomerDB(models.Model):
     Name = models.CharField(max_length=100,null=True,blank=True)
@@ -38,3 +37,12 @@ class CheckOutDB(models.Model):
 
     def __str__(self):
         return self.Customer
+    
+
+class UserReviews(models.Model):
+    book_title = models.CharField(max_length=200,null=True,blank=True)
+    review = models.TextField(null=True,blank=True)
+    user = models.CharField(max_length=150,null=True,blank=True)
+
+    def __str__(self):
+        return self.book_title
