@@ -43,6 +43,7 @@ class UserReviews(models.Model):
     book_title = models.CharField(max_length=200,null=True,blank=True)
     review = models.TextField(null=True,blank=True)
     user = models.CharField(max_length=150,null=True,blank=True)
+    created_at = models.DateTimeField(auto_now_add=True,null=True)
 
     def __str__(self):
         return self.book_title

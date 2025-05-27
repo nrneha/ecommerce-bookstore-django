@@ -7,16 +7,16 @@ import razorpay
 from django.contrib.auth.hashers import make_password,check_password
 from .utils import user_login_required
 from django.core.cache import cache
+from django.core.mail import EmailMessage
+from.tasks import *
 
 
 
 def Home_page(request):
     data = cache.get('all_category')
-    print("from cacche",data)
     if data is None:
         data = list(CategoryDB.objects.all())
         cache.set('all_category',data,timeout=60*15)
-        print("from db")
     return render(request, "Home.html", {'data': data})
 
 
@@ -85,6 +85,12 @@ def Save_UserAccount(request):
         # save the user details to User_Account db
         obj = User_Accounts(Name=nm, Email=em, Password=make_password(ps))  # here user password stored as hashed
         obj.save()
+        
+        # send welcome email to users when new account create.
+        subject ="Account Created - THe Bookshelf"
+        body = "Thanks for creating an account with us. We're excited to have you on board!\n Happy reading! — The Bookshelf Team"
+        send_email.delay(subject,body,obj.Email)
+
         messages.success(request, "Success! Your account is now active.Please Login.. Happy shopping")
         return redirect(UserAccount_Reg)
 
@@ -218,7 +224,8 @@ def account_delete(request, user):
 
 @user_login_required
 def customer_testimonials(request):# testimoial page shows users reviews about the books they read
-    return render(request,"customer_testimonials.html")
+    reviews = UserReviews.objects.order_by('-created_at')[:20]
+    return render(request,"customer_testimonials.html",{'reviews':reviews})
 
 @user_login_required
 def write_review(request):# page for users to write the review of the books they read
@@ -228,10 +235,15 @@ def write_review(request):# page for users to write the review of the books they
 def save_user_review(request,user):
 
     if request.method == 'POST':
+
+        user = User_Accounts.objects.get(Name=user)
         book_title = request.POST.get('book_title')
         review = request.POST.get("review")
 
         review = UserReviews(book_title=book_title,review=review,user=user)
         review.save()
+        subject ="Thankyou for Review - THe Bookshelf"
+        body = f'Hi {user},\n Thank you for taking the time to review { book_title }! \n Your feedback helps other readers and supports our community of book lovers.We truly appreciate your contribution. \n Happy reading!  — The Bookshelf Team'
+        send_email.delay(subject,body,user.Email)
         messages.success(request,"Thank you for your review")
         return redirect(Home_page)

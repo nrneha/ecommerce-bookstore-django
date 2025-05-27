@@ -168,69 +168,17 @@
    <!-- start review section -->
       <div style="padding: 20px;">
          <div class="row">
-            <div class="col-sm-6 mb-3 mb-sm-0 col-md-4 mt-4">
-               <div class="card">
+            {% for review in reviews%}
+            <div class="col-sm-6 mb-3 mb-sm-0 col-md-4 mt-4" >
+               <div class="card" style="background-color: rgba(215, 248, 237, 0.888);">
                   <div class="card-body">
-                     <h5 class="card-title">Special title treatment</h5>
-                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                     <a href="#" class="btn btn-primary">Go somewhere</a>
+                     <h5 class="card-title">{{review.book_title}}</h5>
+                     <p class="card-text">{{review.review}}</p>
+                     <span>{{review.user}} - </span><span style="font-size: 10px;">{{ review.created_at|date:"d/m/y" }}</span>
                   </div>
                </div>
             </div>
-             <div class="col-sm-6 mb-3 mb-sm-0 col-md-4 mt-4">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Special title treatment</h5>
-                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                     <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-               </div>
-            </div>
-             <div class="col-sm-6 mb-3 mb-sm-0 col-md-4 mt-4">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Special title treatment</h5>
-                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                     <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-               </div>
-            </div>
-             <div class="col-sm-6 mb-3 mb-sm-0 col-md-4 mt-4">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Special title treatment</h5>
-                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                     <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-               </div>
-            </div>
-             <div class="col-sm-6 mb-3 mb-sm-0 col-md-4 mt-4">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Special title treatment</h5>
-                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                     <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-               </div>
-            </div>
-             <div class="col-sm-6 mb-3 mb-sm-0 col-md-4 mt-4">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Special title treatment</h5>
-                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                     <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-               </div>
-            </div>
-             <div class="col-sm-6 mb-3 mb-sm-0 col-md-4 mt-4">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Special title treatment</h5>
-                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                     <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-               </div>
-            </div>
+            {% endfor %}
       </div>
 
 
